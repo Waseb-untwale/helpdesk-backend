@@ -44,28 +44,28 @@ const loginUser = async (req, res) => {
 };
 
 
-const getProfile= async (req, res) => {
-  try {
-    const user = await User.findById(req.user.userId).select("-password");
-    console.log(user)
-    if (!user) return res.status(400).json({ msg: 'User not found!' });
+// const getProfile= async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user.userId).select("-password");
+//     console.log(user)
+//     if (!user) return res.status(400).json({ msg: 'User not found!' });
 
     
-    if (user.role !== "customer") {
-      return res.status(403).json({ msg: 'Access denied. Only customers can view their profile.' });
-    }
+//     if (user.role !== "customer") {
+//       return res.status(403).json({ msg: 'Access denied. Only customers can view their profile.' });
+//     }
 
-    // Return user profile details
-    res.json({
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      createdAt: user.createdAt,
-    });
-  } catch (err) {
-    res.status(500).json({ msg: 'Server error' });
-  }
-};
+//     // Return user profile details
+//     res.json({
+//       name: user.name,
+//       email: user.email,
+//       role: user.role,
+//       createdAt: user.createdAt,
+//     });
+//   } catch (err) {
+//     res.status(500).json({ msg: 'Server error' });
+//   }
+// };
 
 
 const getCustomers = async (req, res) => {

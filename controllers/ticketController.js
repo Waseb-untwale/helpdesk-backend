@@ -20,7 +20,7 @@ exports.createTicket = async (req, res) => {
 // 2. Fetch all tickets (for customer-dashboard, agent-dashboard, admin-dashboard)
 exports.getTickets = async (req, res) => {
   try {
-    const tickets = await Ticket.find().sort({ updatedAt: -1 });
+    const tickets = await Ticket.find().sort({ updatedAt: -1 }); // 
     res.status(200).json(tickets);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch tickets", error });

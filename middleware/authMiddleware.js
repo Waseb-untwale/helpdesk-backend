@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  const token = req.header('Authorization')?.replace('Bearer', '');
   console.log('Token:', token);  // Debugging: Check if the token is being sent
   if (!token) return res.status(401).json({ msg: 'No token, authorization denied' });
 
@@ -20,6 +20,7 @@ const authMiddleware = (req, res, next) => {
 // Middleware to verify role (Customer, Agent, Admin)
 const authorizeRoles = (...allowedRoles) => {
   return (req, res, next) => {
+    console.log(req.user)
     if (!req.user || !allowedRoles.includes(req.user.role)) {
       return res.status(403).json({ msg: 'Access denied' });
     }
